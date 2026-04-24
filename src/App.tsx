@@ -9,7 +9,7 @@ import Informativa from './informativa/index';
 
 import './App.css';
 
-// Creamos el componente de navegación para que pueda usar el contexto
+
 function Navbar() {
   const { favorites } = useContext(PerrosContext);
   
@@ -29,7 +29,7 @@ function App() {
   return (
     <PerrosProvider>
       <Router>
-        <Navbar /> {/* El Navbar ahora está dentro del Provider */}
+        <Navbar /> 
         <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/Favoritos' element={<Favoritos />}/>

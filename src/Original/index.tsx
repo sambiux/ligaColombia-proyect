@@ -12,7 +12,7 @@ export default function Original() {
   const [perros, setPerros] = useState<DogData[]>([]);
   const [seleccionados, setSeleccionados] = useState<DogData[]>([]);
 
-  // 1. Montamos el useEffect con el fetch
+ 
   useEffect(() => {
     fetch("https://api.thedogapi.com/v1/images/search?limit=12")
       .then((res) => res.json())
@@ -20,9 +20,9 @@ export default function Original() {
       .catch((err) => console.error("Error original:", err));
   }, []);
 
-  // 2. Función original: Manejar la selección para comparar
+  
   const seleccionarPerro = (perro: DogData) => {
-    // Si ya está seleccionado, lo quitamos
+    
     let yaExiste = false;
     for (let i = 0; i < seleccionados.length; i++) {
       if (seleccionados[i].id === perro.id) {
@@ -35,7 +35,6 @@ export default function Original() {
       const nuevo = seleccionados.filter(p => p.id !== perro.id);
       setSeleccionados(nuevo);
     } else if (seleccionados.length < 2 ) {
-      // Solo permitimos seleccionar hasta 2 perros
       setSeleccionados([...seleccionados, perro]);
     }
   };
@@ -45,7 +44,7 @@ export default function Original() {
       <h1>Comparacion perros</h1>
       <p>Selecciona 2 perros para comparar su tamaño</p>
 
-      {/* Panel de Comparación Original */}
+      
       <div className="comparison-panel">
         {seleccionados.length === 2 ? (
           <div className="battle-arena">
@@ -67,7 +66,7 @@ export default function Original() {
         )}
       </div>
 
-      {/* Galería Principal */}
+      
       <div className="containerCards">
         {perros.map((perro) => {
           let estaSeleccionado = false;

@@ -21,12 +21,12 @@ export default function Informativa() {
       });
   }, []);
 
-  // --- Lógica Original: Cálculo de Estadísticas ---
+  
   let perroMasGrande = datos[0];
   let sumaAreas = 0;
 
   for (let i = 0; i < datos.length; i++) {
-    // Calculamos el área (W * H) para saber cuál es el más "grande" en pixeles
+    
     if ((datos[i].width * datos[i].height) > (perroMasGrande.width * perroMasGrande.height)) {
       perroMasGrande = datos[i];
     }

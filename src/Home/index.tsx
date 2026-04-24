@@ -5,7 +5,7 @@ import "./style.css";
 
 export default function Home() {
   const [data, setData] = useState<userData[]>([]);
-  // Usamos el contexto correctamente
+  
   const { toggleFavorite, isFavorite } = useContext(PerrosContext);
 
   useEffect(() => {
