@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { PerrosContext } from "../PerrosContext";
-import type { userData } from "../PerrosContext";
 import "./style.css";
 
 export default function Favoritos() {
