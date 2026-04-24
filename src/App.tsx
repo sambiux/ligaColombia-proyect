@@ -1,42 +1,44 @@
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router';
+import { useContext } from 'react';
+import { PerrosProvider, PerrosContext } from './PerrosContext';
 
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router'
+import Home from './Home/index';
+import Favoritos from './Favoritos/index';
+import Original from './Original/index';
+import Informativa from './informativa/index';
 
+import './App.css';
 
-import Original from './Original'
-import Equipo from './equipo'
-import Home from './Home'
-import Favoritos from './Favoritos'
-import Informativa from './informativa'
-import Usuario from './usuario'
-import './App.css'
-
-function App() {
-
-
+// Creamos el componente de navegación para que pueda usar el contexto
+function Navbar() {
+  const { favorites } = useContext(PerrosContext);
+  
   return (
-    <>
-      <Router>
-        
-        <nav className='c-menu'>
-            <Link to="/">Home</Link>
-            <Link to="/Favoritos">Favorito</Link>
-            <Link to="/Original">Origin</Link>
-            <Link to="/informativa">Informativa</Link>
-            <Link to="/usuario">Usuario</Link>
-        </nav>
-
-          <Routes>
-              <Route path='/' element={<Home/>}/>
-              <Route path='/Favoritos' element={<Favoritos/>}/>
-              <Route path='/Original' element={<Original/>}/>
-              <Route path='/informativa' element={<Informativa/>}/>
-              <Route path='/usuario' element={<Usuario/>}/>
-              <Route path='/equipo/:equipo' element={<Equipo/>}/>
-          </Routes>
-      </Router>
-
-    </>
-  )
+    <nav className='c-menu'>
+        <Link to="/">Home</Link>
+        {/* Aquí mostramos la longitud del array de favoritos */}
+        <Link to="/Favoritos">Favoritos ({favorites.length})</Link>
+        <Link to="/Original">Original</Link>
+        <Link to="/informativa">Informativa</Link>
+       
+    </nav>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <PerrosProvider>
+      <Router>
+        <Navbar /> {/* El Navbar ahora está dentro del Provider */}
+        <Routes>
+            <Route path='/' element={<Home />}/>
+            <Route path='/Favoritos' element={<Favoritos />}/>
+            <Route path='/Original' element={<Original/>}/>
+            <Route path='/informativa' element={<Informativa/>}/>
+        </Routes>
+      </Router>
+    </PerrosProvider>
+  );
+}
+
+export default App;
