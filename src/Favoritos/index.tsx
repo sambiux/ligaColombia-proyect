@@ -12,10 +12,10 @@ export default function Favoritos() {
         <p style={{ textAlign: "center", marginTop: "50px" }}>No hay favoritos.</p>
       ) : (
         <div className="containerCards">
-          {favorites.map((item) => (
-            <div className="perros-cards" key={item.id}>
-              <img src={item.url} alt="perro" />
-              <button onClick={() => toggleFavorite(item)} className="btn-quitar">
+          {favorites.map((perros) => (
+            <div className="perros-cards" key={perros.id}>
+              <img src={perros.url} alt="perro" />
+              <button onClick={() => toggleFavorite(perros)} className="btn-quitar">
                 Eliminar
               </button>
             </div>
