@@ -1,27 +1,93 @@
-html
-
-
-.c-menu{
-    background: silver;
+/* --- Rediseño del Menú --- */
+.c-menu {
+    background: #222222; /* Cambiado a un gris oscuro moderno para que contraste mejor con texto claro */
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    justify-content: space-around; /* Distribuye los botones uniformemente por la pantalla */
+    align-items: center;
     position: fixed;
     width: 100%;
     bottom: 0;
     left: 0;
-    padding: 10px 0;
-    
+    padding: 10px 5px; /* Evita que toque los bordes físicos del teléfono */
+    z-index: 1000;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.c-menu img{
-    height: 20px;
-    display: block;
-    margin: 0 auto;
-}
-
-.c-menu p {
-    font-size: 14px;
+/* Enlaces o contenedores de cada botón */
+.c-menu a, .c-menu .menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
+    color: #ffffff; /* Texto blanco para resaltar sobre el fondo oscuro */
+    flex: 1;
+    min-width: 0; /* Corrección crítica de CSS: permite que el contenedor se encoja si es necesario */
+    padding: 4px;
+}
+
+.c-menu img {
+    height: 22px;
+    width: auto;
+    display: block;
+    margin-bottom: 4px;
+    opacity: 0.8; /* Se ve más elegante */
+}
+
+/* --- AQUÍ ESTABA EL PROBLEMA EN image_523ac3.png --- */
+.c-menu p {
+    font-family: 'Segoe UI', system-ui, sans-serif; /* Forzamos una fuente limpia y legible, NO la Rubik Storm */
+    font-size: 10px; /* Tamaño ideal para menús móviles inferiores */
+    font-weight: 600; /* Un poco de grosor para que se lea bien */
+    text-transform: uppercase; /* Mantiene el estilo formal */
+    margin: 0;
+    text-align: center;
+    width: 100%;
     
+    /* Truco para que el texto largo no rompa todo: */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Si no cabe (como "INFORMATIV..."), pone tres puntos en vez de encimarse */
+    white-space: nowrap; 
+}
+
+/* El botón de Cerrar Sesión o botones especiales */
+.c-menu .cerrar-sesion, 
+.c-menu button {
+    background: #ff4d4d; /* Fondo rojo sutil para destacar */
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: white;
+    font-weight: bold;
+}
+
+
+/* --- Adaptación de pantallas --- */
+
+/* En celulares muy pequeños (Menos de 400px de ancho) */
+@media (max-width: 400px) {
+    .c-menu {
+        gap: 2px;
+    }
+    .c-menu p {
+        font-size: 9px; /* Reduce un pelín más el texto para garantizar espacio */
+    }
+    .c-menu img {
+        height: 18px; /* Iconos ligeramente más pequeños */
+    }
+}
+
+/* En pantallas grandes (Escritorio / Tablets) */
+@media (min-width: 768px) {
+    .c-menu {
+        justify-content: center; /* En PC se centra bonito */
+        gap: 50px; /* Gran separación para que respire */
+        padding: 15px 0;
+    }
+    .c-menu p {
+        font-size: 13px; /* Texto más grande en desktop */
+    }
+    .c-menu img {
+        height: 24px;
+    }
 }
